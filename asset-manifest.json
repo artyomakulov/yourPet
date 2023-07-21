@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/artyomakulov/yourPet/static/css/main.8947db07.css",
+    "main.js": "/artyomakulov/yourPet/static/js/main.26f6b742.js",
+    "static/media/logo-desktop.svg": "/artyomakulov/yourPet/static/media/logo-desktop.6e2f51eeb062dc6472f5e4aa1de019f4.svg",
+    "index.html": "/artyomakulov/yourPet/index.html",
+    "main.8947db07.css.map": "/artyomakulov/yourPet/static/css/main.8947db07.css.map",
+    "main.26f6b742.js.map": "/artyomakulov/yourPet/static/js/main.26f6b742.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8947db07.css",
+    "static/js/main.26f6b742.js"
+  ]
+}
