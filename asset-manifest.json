@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/yourPet/static/css/main.b7aa6b9d.css",
-    "main.js": "/yourPet/static/js/main.ab608dfc.js",
+    "main.css": "/yourPet/static/css/main.a9bafbea.css",
+    "main.js": "/yourPet/static/js/main.be626d8b.js",
     "static/media/desk404@2x.jpg": "/yourPet/static/media/desk404@2x.d629c3e2a71c23628822.jpg",
     "static/media/tablet404@2x.jpg": "/yourPet/static/media/tablet404@2x.1caef19e5303986d47fe.jpg",
     "static/media/desk404.jpg": "/yourPet/static/media/desk404.b07b813f3e9a22130624.jpg",
@@ -11,11 +11,14 @@
     "static/media/logo-desktop.svg": "/yourPet/static/media/logo-desktop.6e2f51eeb062dc6472f5e4aa1de019f4.svg",
     "static/media/pawprint1.svg": "/yourPet/static/media/pawprint1.1efe38d6275db4ce84cba2be272a3b1d.svg",
     "index.html": "/yourPet/index.html",
-    "main.b7aa6b9d.css.map": "/yourPet/static/css/main.b7aa6b9d.css.map",
-    "main.ab608dfc.js.map": "/yourPet/static/js/main.ab608dfc.js.map"
+    "static/media/plus-small.svg": "/yourPet/static/media/plus-small.79b1520b80df332dbb32d481b679a6e1.svg",
+    "static/media/filters-3.svg": "/yourPet/static/media/filters-3.369194da951b5c53677e7c7934f25e57.svg",
+    "static/media/plus.svg": "/yourPet/static/media/plus.40b2205dc2516cb92de4e8f4f8627464.svg",
+    "main.a9bafbea.css.map": "/yourPet/static/css/main.a9bafbea.css.map",
+    "main.be626d8b.js.map": "/yourPet/static/js/main.be626d8b.js.map"
   },
   "entrypoints": [
-    "static/css/main.b7aa6b9d.css",
-    "static/js/main.ab608dfc.js"
+    "static/css/main.a9bafbea.css",
+    "static/js/main.be626d8b.js"
   ]
 }
