@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/yourPet/static/css/main.fed757f2.css",
-    "main.js": "/yourPet/static/js/main.6c68f99b.js",
+    "main.css": "/yourPet/static/css/main.55f45e01.css",
+    "main.js": "/yourPet/static/js/main.4e979e6b.js",
     "static/media/mainTab@2x.png": "/yourPet/static/media/mainTab@2x.6d01f8f468f4164b01e7.png",
     "static/media/mainDesc@2x.png": "/yourPet/static/media/mainDesc@2x.da0a86b4bb8712758f1c.png",
     "static/media/mainTab.png": "/yourPet/static/media/mainTab.479ea06a5dc8e536e0d5.png",
@@ -28,17 +28,18 @@
     "index.html": "/yourPet/index.html",
     "static/media/user1.svg": "/yourPet/static/media/user1.6b7eb9debcb5e574165c6528f1508b8a.svg",
     "static/media/shape.svg": "/yourPet/static/media/shape.8d579bc9c8d32929df95d6bd21eb775f.svg",
+    "static/media/cross-small.svg": "/yourPet/static/media/cross-small.8da70af0e6f5ef55f05592dc1412e003.svg",
     "static/media/menu-hamburger.svg": "/yourPet/static/media/menu-hamburger.e5ce08a82de7546bfde31ea978aefa46.svg",
     "static/media/plus-small.svg": "/yourPet/static/media/plus-small.79b1520b80df332dbb32d481b679a6e1.svg",
     "static/media/chevron-down.svg": "/yourPet/static/media/chevron-down.0cf90490c772b8713f3b0970a2a5abdf.svg",
     "static/media/filters-3.svg": "/yourPet/static/media/filters-3.369194da951b5c53677e7c7934f25e57.svg",
     "static/media/tick.svg": "/yourPet/static/media/tick.659369c7bb4afadcf5dbe89876d1585f.svg",
     "static/media/plus.svg": "/yourPet/static/media/plus.40b2205dc2516cb92de4e8f4f8627464.svg",
-    "main.fed757f2.css.map": "/yourPet/static/css/main.fed757f2.css.map",
-    "main.6c68f99b.js.map": "/yourPet/static/js/main.6c68f99b.js.map"
+    "main.55f45e01.css.map": "/yourPet/static/css/main.55f45e01.css.map",
+    "main.4e979e6b.js.map": "/yourPet/static/js/main.4e979e6b.js.map"
   },
   "entrypoints": [
-    "static/css/main.fed757f2.css",
-    "static/js/main.6c68f99b.js"
+    "static/css/main.55f45e01.css",
+    "static/js/main.4e979e6b.js"
   ]
 }
