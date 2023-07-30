@@ -15,7 +15,7 @@ import styles from '../styles/newsPage.module.scss';
 
 import NewsForm from 'components/News/NewsForm';
 import NewsList from 'components/News/NewsList';
-import Loader from 'components/Loader/Loader';
+import Loader from 'components/Loader/newsLoader';
 
 const NewsPage = () => {
   const dispatch = useDispatch();
