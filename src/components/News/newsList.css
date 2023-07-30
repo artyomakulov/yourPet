@@ -74,13 +74,13 @@
   }
   
   .image {
-    // align-self: flex-start;
+    /* align-self: flex-start; */
     width: 100%;
     height: 100%;
     object-fit: cover;
   
-    // border-radius: 20px;
-    //   margin-bottom: 16px;
+    /* border-radius: 20px; */
+    /* margin-bottom: 16px; */
   }
   
   .itemContainer {
@@ -88,7 +88,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    // height: 100%;
+    /* height: 100%; */
   }
   
   .title {
