@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { RxCross1 } from 'react-icons/rx';
 
-import styles from './newsList.css';
+import styles from './newsList.module.scss';
 
 const NewsForm = ({ handleSearchChange }) => {
   const [search, setSearch] = useState('');

@@ -1,5 +1,5 @@
 import NewsItem from './NewsItem';
-import styles from './newsList.css';
+import styles from './newsList.module.scss';
 
 const NewsList = ({ news }) => {
   const sortedNews = [...news].sort(
