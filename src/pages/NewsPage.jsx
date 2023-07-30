@@ -1,101 +1,72 @@
-import {
-  Box,
-  Container,
-  IconButton,
-  Input,
-  InputAdornment,
-  Typography,
-} from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { ReactComponent as Search } from '../images/icons/search.svg';
-import { ReactComponent as Cross } from '../images/icons/cross.svg';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getNews, getNewsTitle } from 'redux/news/newsOperations';
-import styles from '../styles/styles';
-import NewsList from 'components/News/NewsList/NewsList';
-import Loader from 'components/Loader/Loader';
-import { getStatus } from 'redux/news/newsSelectors';
-import { NewsPagination } from 'components/News/NewsPagination';
+import ReactPaginate from 'react-paginate';
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
-export default function NewsPage() {
+import { fetchNews } from '../redux/news/newsOperations';
+import {
+  selectIsLoading,
+  selectError,
+  selectNews,
+  selectTotalPages,
+} from '../redux/news/newsSelectors';
+
+import styles from '../styles/newsPage.module.scss';
+
+import NewsForm from 'components/News/NewsForm';
+import NewsList from 'components/News/NewsList';
+import Loader from 'components/Loader/Loader';
+
+const NewsPage = () => {
   const dispatch = useDispatch();
-  const [query, setQuery] = useState('');
-  const [input, setInput] = useState('');
-  const isLoad = useSelector(getStatus);
+  const newsItems = useSelector(selectNews);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const totalPages = useSelector(selectTotalPages);
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activePage, setActivePage] = useState(0);
+
+  const handleSearchChange = value => {
+    setSearchQuery(value);
+    setActivePage(0);
+  };
 
   useEffect(() => {
-    const data = { page: 1 };
+    dispatch(fetchNews({ searchQuery }));
+  }, [dispatch, searchQuery]);
 
-    dispatch(getNews(data));
-  }, [dispatch]);
-
-  const onSubmit = e => {
-    e.preventDefault();
-    const data = { query: e.target.search.value, page: 1 };
-
-    dispatch(getNewsTitle(data));
-    setQuery(e.target.search.value);
+  const handlePageClick = ({ selected }) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const page = selected + 1;
+    setActivePage(selected);
+    dispatch(fetchNews({ searchQuery, page }));
   };
 
-  const changeInput = e => {
-    if (e.target.value === '') {
-      setQuery(e.target.value);
-    }
-  };
-
-  const handleChange = event => {
-    setInput(event.target.value);
-  };
-
-  const clearInput = e => {
-    setQuery('');
-    const data = { page: 1 };
-    dispatch(getNews(data));
-
-    setInput('');
-  };
-    return (
-      <>
-      <Container sx={styles.container}>
-        <Typography sx={styles.title} variant="h2">
-          News
-        </Typography>
-        <Box component="form" onSubmit={onSubmit} sx={styles.box}>
-          <Input
-            placeholder="Search"
-            name="search"
-            value={input}
-            onInput={changeInput}
-            onChange={handleChange}
-            disableUnderline
-            sx={styles.input}
-            endAdornment={
-              <>
-                {query && (
-                  <InputAdornment position="end">
-                    <IconButton onClick={clearInput} size="small">
-                      <Cross sx={{ pl: '10px' }} />
-                    </IconButton>
-                  </InputAdornment>
-                )}
-                <InputAdornment
-                  position="end"
-                  sx={{ position: 'absolute', right: 0, pr: '14px' }}
-                >
-                  <IconButton type="submit" size="small">
-                    <Search />
-                  </IconButton>
-                </InputAdornment>
-              </>
-            }
+  return (
+    <>
+      <h1 className={styles.title}>News</h1>
+      <NewsForm handleSearchChange={handleSearchChange} />
+      {isLoading && !error && <Loader />}
+      {newsItems.length > 0 && <NewsList news={newsItems} />}
+      {newsItems.length > 0 && (
+        <div className={styles.paginationWrapper}>
+          <ReactPaginate
+            previousLabel={<BsArrowLeft />}
+            nextLabel={<BsArrowRight />}
+            pageCount={Math.ceil(totalPages) || 0}
+            onPageChange={handlePageClick}
+            containerClassName={styles.pagination}
+            activeClassName={styles.paginationActive}
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={2}
+            breakLabel={'...'}
+            forcePage={activePage}
           />
-        </Box>
-        {!isLoad ? <NewsList query={query} /> : <Loader />}
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <NewsPagination />
-        </Box>
-      </Container>
+        </div>
+      )}
     </>
-    );
-  }
-  
+  );
+};
+
+export default NewsPage;

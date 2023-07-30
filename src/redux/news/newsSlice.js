@@ -1,42 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getNews, getNewsTitle } from './newsOperations';
+import { fetchNews } from './newsOperations';
 
-const newsInitialState = {
-  news: [],
-  status: true,
-  total: 0,
+const initialState = {
+  items: [],
+  totalPages: null,
+  isLoading: false,
+  error: null,
 };
 
 const newsSlice = createSlice({
   name: 'news',
-  initialState: newsInitialState,
+  initialState,
   extraReducers: builder => {
     builder
-      .addCase(getNews.pending, (state, _) => {
-        state.status = true;
+      .addCase(fetchNews.pending, state => {
+        state.isLoading = true;
+        state.error = null;
       })
-      .addCase(getNews.fulfilled, (state, action) => {
-        state.news = action.payload.news;
-        state.status = false;
-        state.total = action.payload.total;
+      .addCase(fetchNews.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload.data;
+        state.totalPages = action.payload.totalPages;
       })
-      .addCase(getNews.rejected, (state, _) => {
-        state.status = false;
-        state.news = [];
-      })
-      .addCase(getNewsTitle.pending, (state, _) => {
-        state.status = true;
-      })
-      .addCase(getNewsTitle.fulfilled, (state, action) => {
-        state.news = action.payload.news;
-        state.status = false;
-        state.total = action.payload.total;
-      })
-      .addCase(getNewsTitle.rejected, (state, _) => {
-        state.status = false;
-        state.news = [];
+      .addCase(fetchNews.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });
 
-export const newsReducer = newsSlice.reducer;
+export default newsSlice.reducer;

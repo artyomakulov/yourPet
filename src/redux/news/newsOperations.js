@@ -1,28 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const getNews = createAsyncThunk(
-  'get/news',
-  async ({ page = 1 }, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get(`news?page=${page}&limit=6`);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+export const instance = axios.create({
+  baseURL: 'https://your-pet.onrender.com/api',
+});
 
-export const getNewsTitle = createAsyncThunk(
-  'news/title',
-  async ({ query, page = 1 }, { rejectWithValue }) => {
+export const fetchNews = createAsyncThunk(
+  'news/all',
+  async ({ searchQuery, page }, thunkAPI) => {
     try {
-      const { data } = await axios.get(
-        `news/title?title=${query}&page=${page}&limit=6`
-      );
-      return data;
+      const response = await instance.get('/news', {
+        params: {
+          search: searchQuery,
+          page,
+        },
+      });
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
