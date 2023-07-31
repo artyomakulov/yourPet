@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
-import { fetchNews } from '../../redux/news/newsOperations';
+import {fetchNews} from '../redux/news/newsOperations';
 import {
   selectIsLoading,
   selectError,
   selectNews,
   selectTotalPages,
-} from '../../redux/news/newsSelector';
+} from '../redux/news/newsSelector';
 
-import styles from '../NewsPage/newsPage.css';
+import styles from './newsPage.css';
 
 import NewsForm from 'components/News/NewsForm';
 import NewsList from 'components/News/NewsList';
