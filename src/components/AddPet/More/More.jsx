@@ -4,9 +4,9 @@ import pluse from '../../../images/pluse.svg';
 import React, { useState } from 'react';
 import { Field } from 'formik';
 
-const More = ({ values, errors, current }) => {
+const More = ({ values, errors, current, setAvatar }) => {
   const [file, setFile] = useState();
-  const [sex, setSex] = useState({
+  const [sex] = useState({
     Female: false,
     Male: false,
   });
@@ -65,10 +65,10 @@ const More = ({ values, errors, current }) => {
 
   const previewImage = e => {
     console.log(e.target.files[0]);
+    setAvatar(e.target.files[0]);
     setFile(URL.createObjectURL(e.target.files[0]));
   };
 
-  // console.log(values);
   const onFemaleClick = () => {
     document.querySelector('.Female').click();
     sex.Female = true;
@@ -183,14 +183,14 @@ const More = ({ values, errors, current }) => {
             <Field
               placeholder="Price"
               className={
-                css.input1 + ' ' + (errors.Price ? css.errorInput : '')
+                css.input1 + ' ' + (errors.price ? css.errorInput : '')
               }
               type="number"
               name="price"
               step="100"
             />
-            {errors.Price ? (
-              <div className={css.errorDiv}>{errors.Price}</div>
+            {errors.price ? (
+              <div className={css.errorDiv}>{errors.price}</div>
             ) : null}
           </div>
         ) : null}

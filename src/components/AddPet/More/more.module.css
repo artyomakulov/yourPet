@@ -1,7 +1,7 @@
 @import '../../../styles/colors.module.css';
-@import '../../../styles/breakpoints.module.css';
+/* @import '../../../styles/breakpoints.module.css'; */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;700&display=swap');
-@import-normalize;
+/* @import-normalize; */
 @media screen and (min-width: 280px) {
   .inputFileWrap {
     display: flex;
@@ -189,7 +189,7 @@
 @media screen and (min-width: 768px) {
   .maindiv {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 45px;
     margin-bottom: 60px;
     align-items: flex-end;
@@ -307,5 +307,9 @@
     font-weight: 400;
     line-height: 150%; /* 21px */
     letter-spacing: 0.56px;
+  }
+
+  .errorInput {
+    border-color: #f43f5e;
   }
 }

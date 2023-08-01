@@ -8,40 +8,32 @@ const FormBtn = ({
   step,
   error,
   hendeError,
-  detales,
   values,
-  onSubmit,
   setDetaes,
   current,
 }) => {
-  // const onSub = () => {
-  //   if (values.comments === '') {
-  //     const err = { comments: 'comments is a required field' };
-  //     hendeError(err);
-  //   } else {
-  //     setDetaes(values);
-
-  //     onClickIncrement();
-  //   }
-  // };
-  // const sub = () => {
-  //   console.log(values);
-  //   setDetaes(values);
-  // };
+  const onSub = () => {
+    if (values.comments === '') {
+      const err = { comments: 'comments is a required field' };
+      hendeError(err);
+    } else {
+      setDetaes(values);
+      increese();
+    }
+  };
 
   const increese = () => {
     onClickIncrement();
   };
 
   const errorCheck = () => {
-    console.log(error);
     if (error) {
       hendeError(error);
     }
     if (
       (current === 1 || current === 4) &&
       values.date.length > 0 &&
-      values.name.length > 2 &&
+      values.name.length > 0 &&
       values.type.length > 0
     ) {
       onClickIncrement();
@@ -59,7 +51,7 @@ const FormBtn = ({
   return (
     <div className={css.buttonDiv}>
       {step === 3 ? (
-        <button type="submit" className={css.nextBtn}>
+        <button type="submit" className={css.nextBtn} onClick={onSub}>
           Done
           <img src={pawprint} alt="pawprint"></img>
         </button>

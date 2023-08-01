@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 import ProgressBar from './progressBar/progressBar';
@@ -7,7 +10,7 @@ import FormBtn from './formButtons/formBtn';
 import Detales from './detales/Detales';
 import More from './More/More';
 import css from './AddPet.module.css';
-
+import { useNavigate } from 'react-router-dom';
 const validationSchema = {
   current1: Yup.object().shape({
     name: Yup.string().min(2).max(16).required(),
@@ -34,30 +37,44 @@ const validationSchema = {
   }),
 };
 
+const addPet = createAsyncThunk('/pets', async (detales, thunkAPI) => {
+  try {
+    const res = await axios.post('/pets', detales);
+    return res.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message);
+  }
+});
+
 const AddPet = () => {
   const [step, setStep] = useState(1);
   const [current, setCurrent] = useState(1);
   const [error, setError] = useState({});
+  const [avatar, setAvatar] = useState({});
   const [action, setAction] = useState('your pet');
   const [detales, setDetaes] = useState({
+    _id: '',
+    action: '',
     name: '',
     date: '',
-    type: '',
     comments: '',
     petAvatar: '',
     title: '',
+    type: '',
     location: '',
     price: '',
-    action: '',
     sex: '',
   });
-  console.log(action);
-  // console.log(validationSchema[`current${current}`]);
-  function submit() {
+  const navigate = useNavigate();
+  function submit({ resetForm }) {
     if (step === 4) {
+      detales.action = action;
+      detales.petAvatar = avatar;
+      detales._id = nanoid();
+      addPet(detales);
       console.log(detales);
+      navigate('/user');
       console.log('sucsess');
-      return detales;
     }
   }
 
@@ -66,7 +83,6 @@ const AddPet = () => {
   };
   const HendleIncrementStep = () => {
     setStep(prev => prev + 1);
-    console.log('incress');
   };
   const HendleDecrementStep = () => {
     setStep(prev => prev - 1);
@@ -80,6 +96,7 @@ const AddPet = () => {
     >
       {({ errors, touched, values }) => (
         <Form
+          autoComplete="off"
           className={
             (current === 2 && step === 3) || (current === 3 && step === 3)
               ? css.FormDivSale
@@ -87,7 +104,6 @@ const AddPet = () => {
           }
         >
           {step === 1 ? <h1 className={css.formTitle}>Add pet</h1> : null}
-
           {step > 1 && current === 1 ? (
             <h1 className={css.formTitle}>Add pet</h1>
           ) : null}
@@ -127,18 +143,22 @@ const AddPet = () => {
           ) : null}
 
           {step === 3 ? (
-            <More values={values} errors={error} current={current}></More>
+            <More
+              values={values}
+              errors={error}
+              current={current}
+              setAvatar={setAvatar}
+            ></More>
           ) : null}
 
           <FormBtn
             error={errors}
-            detales={detales}
             hendeError={setError}
             onClickIncrement={HendleIncrementStep}
             onClickDecrement={HendleDecrementStep}
             step={step}
             values={values}
-            onSubmit={submit}
+            // onSubmit={submit}
             setDetaes={setDetaes}
             current={current}
           ></FormBtn>

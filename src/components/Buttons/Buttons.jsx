@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 import { useState } from 'react';
 import { useAuth } from '../../hooks';
 import { ReactComponent as PlusSmall } from '../../images/plus-small.svg';
@@ -59,7 +59,6 @@ const Buttons = ({ handleCategoryChange }) => {
     }
   };
 
-
   const handleCategoryFilterClick = event => {
     handleCategoryChange(event.target.innerText);
   };
@@ -96,13 +95,11 @@ const Buttons = ({ handleCategoryChange }) => {
           className={css.btn}
           onClick={handleCategoryFilterClick}
         >
-
           in good hands
         </button>
 
         {isLoggedIn && (
           <div className={css['btn-auth']}>
-
             <button
               type="button"
               className={css.btn}
@@ -115,7 +112,6 @@ const Buttons = ({ handleCategoryChange }) => {
               className={css.btn}
               onClick={handleCategoryFilterClick}
             >
-
               my ads
             </button>
           </div>
