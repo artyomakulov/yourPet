@@ -1,21 +1,21 @@
 import axios from 'axios';
 
-export const getUserFavoritesNotices = async () => {
-  const { data } = await axios.get(`/notices/favorites`);
-  return data;
-};
-
 export const getUserNotices = async () => {
   const { data } = await axios.get(`notices/own`);
   return data;
 };
-export const deleteUserNoticeById = async (id, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  const { data } = await axios.delete(`notices/${id}`, config);
+export const deleteUserNoticeById = async (id) => {
+  // const config = {
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // };
+  const { data } = await axios.delete(`notices/${id}`);
+  return data;
+};
+
+export const getUserFavoritesNotices = async () => {
+  const { data } = await axios.get(`/notices/favorites`);
   return data;
 };
 

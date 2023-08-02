@@ -20,9 +20,10 @@ const UserPage = lazy(() => import('pages/UserPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  const { isRefreshing, user } = useAuth();
   useEffect(() => {
     dispatch(refreshUser());
+    
   }, [dispatch]);
 
   if (isRefreshing) {

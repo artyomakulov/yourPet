@@ -24,8 +24,6 @@ export const ModalNotice = ({
   location,
   petAvatar,
   owner,
-  handelDeleteFavorite,
-  handelAddFavorite,
 }) => {
   const [modalAcessWindow, setmodalAcessWindow] = useState(false);
   const [favorite, setFavorite] = useState(false);
@@ -53,21 +51,7 @@ export const ModalNotice = ({
   }, [onModalCloseClick]);
 
   // Функція для видалення або додавання картинки до улюбленої
-  const handleFavoritePet = () => {
-    if (!favorite) {
-      addToFavoriteNotices(_id).then(() => {
-        handelAddFavorite(_id);
-      });
-      console.log('+');
-      setFavorite(true);
-    } else {
-      removeFromFavoriteNotices(_id).then(() => {
-        handelDeleteFavorite(_id);
-      });
-      console.log('-');
-      setFavorite(false);
-    }
-  };
+  const handleFavoritePet = () => {};
 
   return (
     <div className={css.modalNoticeOverlay} onClick={handleBackdropClick}>

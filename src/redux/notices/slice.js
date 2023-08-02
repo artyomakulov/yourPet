@@ -5,8 +5,12 @@ import {
   fetchUserNotices,
 } from './operations';
 
+
+
 const initialState = {
   items: [],
+  favorite: [],
+  own:[],
   isLoading: false,
   error: null,
 };

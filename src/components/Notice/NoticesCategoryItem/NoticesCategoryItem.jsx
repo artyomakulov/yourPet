@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import moment from 'moment';
 // import Notify from 'notiflix';
@@ -33,25 +33,11 @@ export const NoticeCategoryItem = ({
   location,
   petAvatar,
   owner,
-  handelDeleteFavorite,
-  handelAddFavorite,
 }) => {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [modalAcessWindow, setmodalAcessWindow] = useState(false);
   const [modalDeleteWindow, setModalDeleteCloseClick] = useState(false);
   const { isLoggedIn, user } = useAuth();
-
-  const [favorite, setFavorite] = useState(false);
-
-  useEffect(() => {
-    if (user?.favoritePets?.includes(_id)) {
-      setFavorite(true);
-      console.log(favorite);
-    } else {
-      setFavorite(false);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handleDeletePet = _id => {
     // dispatch(fetchDeleteNotice(_id));
@@ -66,19 +52,7 @@ export const NoticeCategoryItem = ({
       return;
     }
 
-    if (!favorite) {
-      addToFavoriteNotices(_id).then(() => {
-        handelAddFavorite(_id);
-      });
-      console.log('+');
-      setFavorite(true);
-    } else {
-      removeFromFavoriteNotices(_id).then(() => {
-        handelDeleteFavorite(_id);
-      });
-      console.log('-');
-      setFavorite(false);
-    }
+    
   };
 
   // Функція для нормалізації локації
@@ -119,7 +93,7 @@ export const NoticeCategoryItem = ({
           )}
         </div>
         <p className={css.noticeCategory}>{action}</p>
-        {!favorite ? (
+        {true ? (
           <button
             className={css.addToFavoriteButton}
             onClick={handleFavoritePet}
@@ -188,8 +162,6 @@ export const NoticeCategoryItem = ({
           location={location}
           petAvatar={petAvatar}
           owner={owner}
-          handelDeleteFavorite={handelDeleteFavorite}
-          handelAddFavorite={handelAddFavorite}
         />
       )}
       {modalAcessWindow && (

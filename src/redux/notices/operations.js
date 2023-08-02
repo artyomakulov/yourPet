@@ -26,19 +26,7 @@ export const fetchNotices = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const fetchFavoriteNotices = createAsyncThunk(
-  'notices/favorites',
-  async (_, thunkAPI) => {
-    try {
-      const response = await getUserFavoritesNotices();
-      return response;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -50,10 +38,22 @@ export const fetchUserNotices = createAsyncThunk(
       const response = await getUserNotices();
       return response;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
+  
+  export const fetchFavoriteNotices = createAsyncThunk(
+    'notices/favorites',
+    async (_, thunkAPI) => {
+      try {
+        const response = await getUserFavoritesNotices();
+        return response;
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data.message);
+      }
+    }
+  );
 
 export const fetchAddToFavorite = createAsyncThunk(
   'notices/favorites',
