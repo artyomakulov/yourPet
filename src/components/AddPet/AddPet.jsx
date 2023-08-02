@@ -37,14 +37,24 @@ const validationSchema = {
     title: Yup.string().required(),
   }),
 };
-const addPet = createAsyncThunk('/pets', async (detales, thunkAPI) => {
+const addPet = async detales => {
   try {
     const res = await axios.post('/pets', detales);
+    console.log('addpet' + res);
     return res.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data.message);
+    console.log(error.response.data.message);
   }
-});
+};
+// const addPet = createAsyncThunk('/pets', async (detales, thunkAPI) => {
+//   try {
+//     const res = await axios.post('/pets', detales);
+//     console.log(res)
+//     return res.data;
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(error.response.data.message);
+//   }
+// });
 
 const AddPet = () => {
   const [step, setStep] = useState(1);

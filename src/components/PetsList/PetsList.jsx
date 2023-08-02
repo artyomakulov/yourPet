@@ -35,7 +35,7 @@ export const PetsList = () => {
   }, [dispatch]);
 
   const handleDeleteItem = petId => {
-    deleteUserNoticeById(petId, token)
+    deleteUserNoticeById(petId)
       .then(() => {
         setPets(prevPets => prevPets.filter(pet => pet._id !== petId));
         Notiflix.Notify.success('Pet was deleted');
