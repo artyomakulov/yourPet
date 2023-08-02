@@ -9,8 +9,6 @@ import {
 
 const initialState = {
   items: [],
-  favorite: [],
-  own:[],
   isLoading: false,
   error: null,
 };

@@ -1,11 +1,6 @@
-import { useEffect, useState } from 'react';
 import { NoticeCategoryItem } from '../NoticesCategoryItem/NoticesCategoryItem';
 import css from './NoticesCategoriesList.module.css';
-import { useAuth } from 'hooks';
-import {
-  addToFavoriteNotices,
-  removeFromFavoriteNotices,
-} from 'services/noticesAPI';
+
 
 export const NoticesCategoriesList = ({ cards }) => {
 

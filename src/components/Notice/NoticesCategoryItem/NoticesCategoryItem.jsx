@@ -39,6 +39,12 @@ export const NoticeCategoryItem = ({
   const [modalDeleteWindow, setModalDeleteCloseClick] = useState(false);
   const { isLoggedIn, user } = useAuth();
 
+  const [isFavorite, setIsFavorite] = useState(
+    user.favoritePets.find(item => {
+      return item._id === _id;
+    })
+  );
+
   const handleDeletePet = _id => {
     // dispatch(fetchDeleteNotice(_id));
     // Notify.Notiflix.Success('This item was succesfully deleted!');
@@ -51,8 +57,6 @@ export const NoticeCategoryItem = ({
       setmodalAcessWindow(true);
       return;
     }
-
-    
   };
 
   // Функція для нормалізації локації
@@ -93,7 +97,7 @@ export const NoticeCategoryItem = ({
           )}
         </div>
         <p className={css.noticeCategory}>{action}</p>
-        {true ? (
+        {isFavorite ? (
           <button
             className={css.addToFavoriteButton}
             onClick={handleFavoritePet}
@@ -108,7 +112,7 @@ export const NoticeCategoryItem = ({
             />
           </button>
         )}
-        {user._id === owner.userId && (
+        {user._id === owner._id && (
           <button
             className={css.deleteButton}
             type="button"

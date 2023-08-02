@@ -55,6 +55,7 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.pending, (state, action) => {
         state.isRefreshing = true;
+        state.error = null
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
@@ -63,6 +64,7 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
+        state.error = action.payload
       })
       .addCase(updateUser.pending, (state, action) => {
         state.isUpdating = true;
